@@ -6,4 +6,9 @@
 
     <string name="action_settings">设置</string>
     <string name="admin">管理员</string>
+    <string name="title_activity_login">登</string>
+
+    <string name="username_hint">用户名</string>
+    <string name="password_hint">密码</string>
+    <string name="login">登陆</string>
 </resources>

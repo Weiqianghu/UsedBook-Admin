@@ -1,4 +1,4 @@
-package com.usedbook_admin.weiqianghu.usedbook_admin.view.activity;
+package com.weiqianghu.usedbook_admin.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

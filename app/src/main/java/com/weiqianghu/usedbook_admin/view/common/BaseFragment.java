@@ -1,4 +1,4 @@
-package com.usedbook_admin.weiqianghu.usedbook_admin.view.common;
+package com.weiqianghu.usedbook_admin.view.common;
 
 
 import android.os.Bundle;

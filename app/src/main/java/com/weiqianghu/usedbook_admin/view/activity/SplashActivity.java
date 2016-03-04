@@ -1,17 +1,14 @@
-package com.usedbook_admin.weiqianghu.usedbook_admin.view.activity;
+package com.weiqianghu.usedbook_admin.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 
 import com.usedbook_admin.weiqianghu.usedbook_admin.R;
 
 import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobUser;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -35,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
         Intent intent = null;
 
         public void run() {
-            intent = new Intent(SplashActivity.this, MainActivity.class);
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
