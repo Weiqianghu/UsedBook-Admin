@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UB二手书</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">设置</string>
+    <string name="admin">管理员</string>
+</resources>
