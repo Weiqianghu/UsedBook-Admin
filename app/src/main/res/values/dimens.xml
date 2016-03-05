@@ -16,4 +16,5 @@
     <dimen name="middle_dp">40dp</dimen>
     <dimen name="large_dp">50dp</dimen>
     <dimen name="xlarge_dp">80dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

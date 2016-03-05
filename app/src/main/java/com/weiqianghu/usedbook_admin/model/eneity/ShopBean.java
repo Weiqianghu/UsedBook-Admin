@@ -2,6 +2,9 @@ package com.weiqianghu.usedbook_admin.model.eneity;
 
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.weiqianghu.usedbook_admin.util.Constant;
 
 import java.io.Serializable;
@@ -11,7 +14,7 @@ import cn.bmob.v3.BmobObject;
 /**
  * Created by weiqianghu on 2016/2/27.
  */
-public class ShopBean extends BmobObject implements Serializable{
+public class ShopBean extends BmobObject implements Serializable,Parcelable{
     private String contacts;
     private String idNumber;
     private String idFrontImg;
@@ -24,6 +27,35 @@ public class ShopBean extends BmobObject implements Serializable{
     private String contactNumber;
     private int verifyState;//审核状态
     private String verifyStateStr;
+
+    public ShopBean(){}
+
+    protected ShopBean(Parcel in) {
+        contacts = in.readString();
+        idNumber = in.readString();
+        idFrontImg = in.readString();
+        idBackImg = in.readString();
+        shopName = in.readString();
+        province = in.readString();
+        city = in.readString();
+        county = in.readString();
+        detailAddress = in.readString();
+        contactNumber = in.readString();
+        verifyState = in.readInt();
+        verifyStateStr = in.readString();
+    }
+
+    public static final Creator<ShopBean> CREATOR = new Creator<ShopBean>() {
+        @Override
+        public ShopBean createFromParcel(Parcel in) {
+            return new ShopBean(in);
+        }
+
+        @Override
+        public ShopBean[] newArray(int size) {
+            return new ShopBean[size];
+        }
+    };
 
     public String getVerifyStateStr() {
         switch (verifyState){
@@ -129,5 +161,26 @@ public class ShopBean extends BmobObject implements Serializable{
 
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(contacts);
+        dest.writeString(idNumber);
+        dest.writeString(idFrontImg);
+        dest.writeString(idBackImg);
+        dest.writeString(shopName);
+        dest.writeString(province);
+        dest.writeString(city);
+        dest.writeString(county);
+        dest.writeString(detailAddress);
+        dest.writeString(contactNumber);
+        dest.writeInt(verifyState);
+        dest.writeString(verifyStateStr);
     }
 }

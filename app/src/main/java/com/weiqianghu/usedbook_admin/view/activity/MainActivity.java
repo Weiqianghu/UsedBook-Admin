@@ -3,6 +3,8 @@ package com.weiqianghu.usedbook_admin.view.activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,9 +16,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.usedbook_admin.weiqianghu.usedbook_admin.R;
+import com.weiqianghu.usedbook_admin.util.FragmentUtil;
+import com.weiqianghu.usedbook_admin.view.fragment.PendingAuditFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Toolbar toolbar;
+
+    private FragmentManager mFragmentManager;
+    private Fragment mFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +35,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initView(Bundle savedInstanceState) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.pending_audit);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -46,6 +56,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        gotoPendingAudit();
     }
 
 
@@ -84,11 +96,10 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_pending_audit) {
+            gotoPendingAudit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -104,5 +115,19 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void gotoPendingAudit() {
+        toolbar.setTitle(R.string.pending_audit);
+        setSupportActionBar(toolbar);
+
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        mFragment = mFragmentManager.findFragmentByTag(PendingAuditFragment.TAG);
+        if (mFragment == null) {
+            mFragment=new PendingAuditFragment();
+        }
+        FragmentUtil.addContentNoAnimation(R.id.main_container,mFragment,mFragmentManager,PendingAuditFragment.TAG);
     }
 }

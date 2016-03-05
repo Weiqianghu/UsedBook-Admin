@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="audit_failure_reason">
+        <item>请选择驳回原因</item>
+        <item>审核失败，身份证和联系人不匹配</item>
+        <item>审核失败，身份证照片太模糊，不能辨认信息</item>
+    </string-array>
+</resources>

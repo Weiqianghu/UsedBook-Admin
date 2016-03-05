@@ -28,6 +28,6 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="android.studio@android.com" />
+        android:text="weiqianghu_ecust@163.com" />
 
 </LinearLayout>

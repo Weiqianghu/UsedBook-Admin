@@ -51,5 +51,9 @@ public class Constant {
     public static final int AUDIT_STATE3=3;
     public static final String AUDIT_STATE="audit_state";
 
+    public static final String LIST="list";
+
+    public static final String COUNT="count";
+
 
 }
