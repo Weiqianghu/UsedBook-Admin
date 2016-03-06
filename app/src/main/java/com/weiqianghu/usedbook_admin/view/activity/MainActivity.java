@@ -1,6 +1,8 @@
 package com.weiqianghu.usedbook_admin.view.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.usedbook_admin.weiqianghu.usedbook_admin.R;
+import com.weiqianghu.usedbook_admin.util.Constant;
 import com.weiqianghu.usedbook_admin.util.FragmentUtil;
 import com.weiqianghu.usedbook_admin.view.fragment.PendingAuditFragment;
 
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity
 
     private FragmentManager mFragmentManager;
     private Fragment mFragment;
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +52,20 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+       initToolBar();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         gotoPendingAudit();
+    }
+
+    private void initToolBar(){
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
     }
 
 
@@ -119,15 +127,37 @@ public class MainActivity extends AppCompatActivity
 
     private void gotoPendingAudit() {
         toolbar.setTitle(R.string.pending_audit);
-        setSupportActionBar(toolbar);
-
         if (mFragmentManager == null) {
             mFragmentManager = getSupportFragmentManager();
         }
         mFragment = mFragmentManager.findFragmentByTag(PendingAuditFragment.TAG);
         if (mFragment == null) {
-            mFragment=new PendingAuditFragment();
+            mFragment = new PendingAuditFragment(toolBarHandler);
         }
-        FragmentUtil.addContentNoAnimation(R.id.main_container,mFragment,mFragmentManager,PendingAuditFragment.TAG);
+        FragmentUtil.addContentNoAnimation(R.id.main_container, mFragment, mFragmentManager, PendingAuditFragment.TAG);
     }
+
+    private Handler toolBarHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            switch (msg.what) {
+                case Constant.SET_VIEW:
+                    toolbar.setNavigationIcon(R.mipmap.left);
+                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+                        }
+                    });
+                    mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                    break;
+                case Constant.RESET_VIEW:
+                   initToolBar();
+                    mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                    break;
+            }
+        }
+    };
 }

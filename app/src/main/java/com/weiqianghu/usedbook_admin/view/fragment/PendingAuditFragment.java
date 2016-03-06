@@ -2,6 +2,7 @@ package com.weiqianghu.usedbook_admin.view.fragment;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.BoolRes;
 import android.support.v4.app.Fragment;
@@ -55,6 +56,14 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
     private Fragment mFragment;
 
     private int totalCount=0;
+
+    private Handler handler;
+
+    public PendingAuditFragment(){}
+
+    public PendingAuditFragment(Handler handler){
+        this.handler=handler;
+    }
 
     @Override
     protected int getLayoutId() {
@@ -114,6 +123,21 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
         query.addWhereEqualTo("verifyState", 0);
         mQueryShopCountPresenter.queryShopCount(getActivity(),query);
         mQueryShopPresenter.queryShop(getActivity(), start, step);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            count = 0;
+            isRefresh=true;
+            loadData(count * STEP, STEP);
+            mAdapter.addFooter();
+
+            Message message=new Message();
+            message.what=Constant.RESET_VIEW;
+            handler.sendMessage(message);
+        }
     }
 
     private void loadMore(){
@@ -217,6 +241,10 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
         mFragment.setArguments(bundle);
         Fragment from=mFragmentManager.findFragmentByTag(PendingAuditFragment.TAG);
         FragmentUtil.switchContentAddToBackStack(from,mFragment,R.id.main_container,mFragmentManager,ShopFragment.TAG);
+
+        Message message=new Message();
+        message.what=Constant.SET_VIEW;
+        handler.sendMessage(message);
     }
 
 }
