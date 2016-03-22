@@ -25,6 +25,7 @@ import com.weiqianghu.usedbook_admin.util.FragmentUtil;
 import com.weiqianghu.usedbook_admin.view.ViewHolder;
 import com.weiqianghu.usedbook_admin.view.common.BaseFragment;
 import com.weiqianghu.usedbook_admin.view.common.DividerItemDecoration;
+import com.weiqianghu.usedbook_admin.view.customview.EmptyRecyclerView;
 import com.weiqianghu.usedbook_admin.view.view.IQueryView;
 import com.weiqianghu.usedbook_admin.view.view.IRecycleViewItemClickListener;
 
@@ -36,10 +37,10 @@ import cn.bmob.v3.BmobQuery;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PendingAuditFragment extends BaseFragment implements IQueryView,IRecycleViewItemClickListener {
+public class PendingAuditFragment extends BaseFragment implements IQueryView, IRecycleViewItemClickListener {
     public static String TAG = PendingAuditFragment.class.getSimpleName();
 
-    private RecyclerView mPendingAuditRv;
+    private EmptyRecyclerView mPendingAuditRv;
     private RecyclerView.LayoutManager mLayoutManager;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -50,19 +51,20 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
     private QueryShopCountPresenter mQueryShopCountPresenter;
     private int count = 0;
     private static final int STEP = 15;
-    private boolean isRefresh=false;
+    private boolean isRefresh = false;
 
     private FragmentManager mFragmentManager;
     private Fragment mFragment;
 
-    private int totalCount=0;
+    private int totalCount = 0;
 
     private Handler handler;
 
-    public PendingAuditFragment(){}
+    public PendingAuditFragment() {
+    }
 
-    public PendingAuditFragment(Handler handler){
-        this.handler=handler;
+    public PendingAuditFragment(Handler handler) {
+        this.handler = handler;
     }
 
     @Override
@@ -77,21 +79,23 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        mPendingAuditRv = (RecyclerView) mRootView.findViewById(R.id.rv_pending_audit);
+        mPendingAuditRv = (EmptyRecyclerView) mRootView.findViewById(R.id.rv_pending_audit);
+        View empty = mRootView.findViewById(R.id.data_empty);
+        mPendingAuditRv.setEmptyView(empty);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mPendingAuditRv.setLayoutManager(mLayoutManager);
         mPendingAuditRv.setHasFixedSize(true);
 
-       // mPendingAuditRv.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+        // mPendingAuditRv.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
 
-        mAdapter=new ShopAdapter<>(mData, R.layout.item_pending_audit);
+        mAdapter = new ShopAdapter<>(mData, R.layout.item_pending_audit);
         mPendingAuditRv.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
         mPendingAuditRv.setOnScrollListener(onScrollListener);
 
 
         mQueryShopPresenter = new QueryShopPresenter(this, queryHandler);
-        mQueryShopCountPresenter=new QueryShopCountPresenter(queryCountHandler);
+        mQueryShopCountPresenter = new QueryShopCountPresenter(queryCountHandler);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) mRootView.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.mainColor);
@@ -99,7 +103,7 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
             @Override
             public void onRefresh() {
                 count = 0;
-                isRefresh=true;
+                isRefresh = true;
                 loadData(count * STEP, STEP);
                 mAdapter.addFooter();
             }
@@ -119,30 +123,30 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
     }
 
     private void loadData(int start, int step) {
-        BmobQuery<ShopBean> query=new BmobQuery<>();
+        BmobQuery<ShopBean> query = new BmobQuery<>();
         query.addWhereEqualTo("verifyState", 0);
-        mQueryShopCountPresenter.queryShopCount(getActivity(),query);
+        mQueryShopCountPresenter.queryShopCount(getActivity(), query);
         mQueryShopPresenter.queryShop(getActivity(), start, step);
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden){
+        if (!hidden) {
             count = 0;
-            isRefresh=true;
+            isRefresh = true;
             loadData(count * STEP, STEP);
             mAdapter.addFooter();
 
-            Message message=new Message();
-            message.what=Constant.RESET_VIEW;
+            Message message = new Message();
+            message.what = Constant.RESET_VIEW;
             handler.sendMessage(message);
         }
     }
 
-    private void loadMore(){
+    private void loadMore() {
         count++;
-        loadData(count*STEP,STEP);
+        loadData(count * STEP, STEP);
     }
 
     CallBackHandler queryHandler = new CallBackHandler() {
@@ -152,7 +156,7 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
                 case Constant.SUCCESS:
                     Bundle bundle = msg.getData();
                     List list = bundle.getParcelableArrayList(Constant.LIST);
-                    if(list!=null && list.size()>0) {
+                    if (list != null && list.size() > 0) {
                         if (isRefresh) {
                             mData.clear();
                             isRefresh = false;
@@ -160,11 +164,11 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
                         mData.addAll(list);
                         mAdapter.notifyDataSetChanged();
                         mSwipeRefreshLayout.setRefreshing(false);
-                    }else {
+                    } else {
                         mAdapter.notifyItemRemoved(mData.size());
                         mAdapter.removeFooter();
                     }
-                    if(totalCount<=mData.size()){
+                    if (totalCount <= mData.size()) {
                         mAdapter.removeFooter();
                     }
                     break;
@@ -183,9 +187,9 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
         public void handleSuccessMessage(Message msg) {
             switch (msg.what) {
                 case Constant.SUCCESS:
-                    Bundle bundle=msg.getData();
-                    if(bundle!=null){
-                        totalCount=bundle.getInt(Constant.COUNT);
+                    Bundle bundle = msg.getData();
+                    if (bundle != null) {
+                        totalCount = bundle.getInt(Constant.COUNT);
                     }
                     break;
             }
@@ -206,7 +210,7 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
 
-            if (lastVisibleItem >= totalItemCount-1 && totalCount>mData.size()) {
+            if (lastVisibleItem >= totalItemCount - 1 && totalCount > mData.size()) {
                 mAdapter.addFooter();
                 loadMore();
             }
@@ -226,24 +230,24 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView,IRe
         gotoFragment(postion);
     }
 
-    private void gotoFragment(int position){
-        if(mFragmentManager==null){
-            mFragmentManager=getActivity().getSupportFragmentManager();
+    private void gotoFragment(int position) {
+        if (mFragmentManager == null) {
+            mFragmentManager = getActivity().getSupportFragmentManager();
         }
-        mFragment=mFragmentManager.findFragmentByTag(ShopFragment.TAG);
-        if(mFragment==null){
-            mFragment=new ShopFragment();
+        mFragment = mFragmentManager.findFragmentByTag(ShopFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new ShopFragment();
         }
 
-        Bundle bundle=new Bundle();
-        bundle.putParcelable(Constant.SHOP,mData.get(position));
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Constant.SHOP, mData.get(position));
 
         mFragment.setArguments(bundle);
-        Fragment from=mFragmentManager.findFragmentByTag(PendingAuditFragment.TAG);
-        FragmentUtil.switchContentAddToBackStack(from,mFragment,R.id.main_container,mFragmentManager,ShopFragment.TAG);
+        Fragment from = mFragmentManager.findFragmentByTag(PendingAuditFragment.TAG);
+        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, ShopFragment.TAG);
 
-        Message message=new Message();
-        message.what=Constant.SET_VIEW;
+        Message message = new Message();
+        message.what = Constant.SET_VIEW;
         handler.sendMessage(message);
     }
 

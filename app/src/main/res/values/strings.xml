@@ -28,4 +28,5 @@
     <string name="audit_failure">审核失败</string>
 
     <string name="submit">提交</string>
+    <string name="book_empty">暂无数据，休息一下吧</string>
 </resources>
