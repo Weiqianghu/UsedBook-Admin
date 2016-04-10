@@ -7,30 +7,25 @@
             android:icon="@mipmap/peding_audit"
             android:title="@string/pending_audit" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="啦啦啦" />
+            android:id="@+id/nav_user_manage"
+            android:icon="@mipmap/user_manage"
+            android:title="@string/user_manage" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_book_manage"
+            android:icon="@mipmap/book_manage"
+            android:title="@string/book_manage" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_statistics"
+            android:icon="@mipmap/statistics"
+            android:title="@string/statistics" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@mipmap/settings"
+            android:title="@string/action_settings" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@mipmap/about"
+            android:title="@string/about" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>

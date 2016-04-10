@@ -58,4 +58,16 @@ public class Constant {
     public static final int SET_VIEW = 100;
     public static final int RESET_VIEW = 101;
 
+    public static final String ROLE_USER = "role_user";
+    public static final String ROLE_SHOP = "role_shop";
+    public static final String ROLE_ADMIN = "role_admin";
+
+    public static final String DATA = "data";
+    public static final String BOOK = "book";
+
+
+    public static final String EXIST = "exist";
+
+    public static final int TRUE = 1;
+    public static final int FALSE = 0;
 }

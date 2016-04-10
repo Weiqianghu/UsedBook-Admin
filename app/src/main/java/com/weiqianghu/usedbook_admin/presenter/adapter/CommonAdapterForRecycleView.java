@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by weiqianghu on 2016/3/4.
  */
-public abstract class CommonAdapterForRecycleView<T> extends RecyclerView.Adapter<ViewHolder> {
+public abstract class CommonAdapterForRecycleView<T> extends RecyclerView.Adapter<ViewHolder> implements View.OnClickListener {
 
     protected List<T> mDatas;
     protected int mItemLayoutId;
@@ -37,6 +37,7 @@ public abstract class CommonAdapterForRecycleView<T> extends RecyclerView.Adapte
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer, parent, false);
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(mItemLayoutId, parent, false);
+            view.setOnClickListener(this);
         }
         return ViewHolder.get(view);
     }
@@ -75,5 +76,17 @@ public abstract class CommonAdapterForRecycleView<T> extends RecyclerView.Adapte
         return super.getItemViewType(position);
     }
 
+    private IRecycleViewItemClickListener mClickListener;
+
+    public void setOnItemClickListener(IRecycleViewItemClickListener listener) {
+        this.mClickListener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (mClickListener != null) {
+            mClickListener.onItemClick(v, (Integer) v.getTag());
+        }
+    }
 
 }

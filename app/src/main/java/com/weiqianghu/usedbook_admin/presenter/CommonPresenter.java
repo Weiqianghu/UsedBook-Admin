@@ -13,7 +13,6 @@ import com.weiqianghu.usedbook_admin.util.Constant;
 public class CommonPresenter {
     public Handler handler;
 
-    public CommonPresenter(){}
     public CommonPresenter(Handler handler){
         this.handler=handler;
     }

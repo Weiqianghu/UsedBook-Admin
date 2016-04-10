@@ -4,7 +4,6 @@ package com.weiqianghu.usedbook_admin.view.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.BoolRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -17,14 +16,11 @@ import com.usedbook_admin.weiqianghu.usedbook_admin.R;
 import com.weiqianghu.usedbook_admin.model.eneity.ShopBean;
 import com.weiqianghu.usedbook_admin.presenter.QueryShopCountPresenter;
 import com.weiqianghu.usedbook_admin.presenter.QueryShopPresenter;
-import com.weiqianghu.usedbook_admin.presenter.adapter.CommonAdapterForRecycleView;
 import com.weiqianghu.usedbook_admin.presenter.adapter.ShopAdapter;
 import com.weiqianghu.usedbook_admin.util.CallBackHandler;
 import com.weiqianghu.usedbook_admin.util.Constant;
 import com.weiqianghu.usedbook_admin.util.FragmentUtil;
-import com.weiqianghu.usedbook_admin.view.ViewHolder;
 import com.weiqianghu.usedbook_admin.view.common.BaseFragment;
-import com.weiqianghu.usedbook_admin.view.common.DividerItemDecoration;
 import com.weiqianghu.usedbook_admin.view.customview.EmptyRecyclerView;
 import com.weiqianghu.usedbook_admin.view.view.IQueryView;
 import com.weiqianghu.usedbook_admin.view.view.IRecycleViewItemClickListener;
@@ -226,8 +222,8 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView, IR
     };
 
     @Override
-    public void onItemClick(View view, int postion) {
-        gotoFragment(postion);
+    public void onItemClick(View view, int position) {
+        gotoFragment(position);
     }
 
     private void gotoFragment(int position) {

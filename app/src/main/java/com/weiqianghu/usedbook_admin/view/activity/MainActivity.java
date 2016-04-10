@@ -17,10 +17,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.usedbook_admin.weiqianghu.usedbook_admin.R;
 import com.weiqianghu.usedbook_admin.util.Constant;
 import com.weiqianghu.usedbook_admin.util.FragmentUtil;
+import com.weiqianghu.usedbook_admin.view.fragment.BookManageFragment;
 import com.weiqianghu.usedbook_admin.view.fragment.PendingAuditFragment;
+import com.weiqianghu.usedbook_admin.view.fragment.UserManageFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_main);
         initView(savedInstanceState);
     }
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-       initToolBar();
+        initToolBar();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         gotoPendingAudit();
     }
 
-    private void initToolBar(){
+    private void initToolBar() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
@@ -108,21 +112,45 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_pending_audit) {
             gotoPendingAudit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_user_manage) {
+            gotoUserManage();
+        } else if (id == R.id.nav_book_manage) {
+            gotoBookManage();
+        } else if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_about) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_statistics) {
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void gotoBookManage() {
+        toolbar.setTitle(R.string.book_manage);
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        mFragment = mFragmentManager.findFragmentByTag(BookManageFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new BookManageFragment();
+        }
+        FragmentUtil.addContentNoAnimation(R.id.main_container, mFragment, mFragmentManager, BookManageFragment.TAG);
+    }
+
+    private void gotoUserManage() {
+        toolbar.setTitle(R.string.user_manage);
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        mFragment = mFragmentManager.findFragmentByTag(UserManageFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new UserManageFragment();
+        }
+        FragmentUtil.addContentNoAnimation(R.id.main_container, mFragment, mFragmentManager, UserManageFragment.TAG);
     }
 
     private void gotoPendingAudit() {
@@ -154,7 +182,7 @@ public class MainActivity extends AppCompatActivity
                     mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                     break;
                 case Constant.RESET_VIEW:
-                   initToolBar();
+                    initToolBar();
                     mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                     break;
             }
