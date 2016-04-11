@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.weiqianghu.usedbook_admin.view.fragment.PushMessageFragment">
+
+
+    <EditText
+        android:id="@+id/et_message_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_weight="1"
+        android:background="@drawable/et_background"
+        android:gravity="top"
+        android:hint="@string/push_message_content"
+        android:maxLength="256"
+        android:textColor="@color/textColor" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background"
+        android:text="@string/submit"
+        android:textColor="@color/white" />
+
+</LinearLayout>

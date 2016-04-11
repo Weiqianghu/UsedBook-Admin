@@ -21,9 +21,14 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.usedbook_admin.weiqianghu.usedbook_admin.R;
 import com.weiqianghu.usedbook_admin.util.Constant;
 import com.weiqianghu.usedbook_admin.util.FragmentUtil;
+import com.weiqianghu.usedbook_admin.view.fragment.AboutFragment;
 import com.weiqianghu.usedbook_admin.view.fragment.BookManageFragment;
 import com.weiqianghu.usedbook_admin.view.fragment.PendingAuditFragment;
+import com.weiqianghu.usedbook_admin.view.fragment.PushMessageFragment;
+import com.weiqianghu.usedbook_admin.view.fragment.SeetingsFragment;
 import com.weiqianghu.usedbook_admin.view.fragment.UserManageFragment;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,7 +36,6 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
 
     private FragmentManager mFragmentManager;
-    private Fragment mFragment;
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -99,6 +103,11 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            gotoSettingsForTop();
+            return true;
+        }
+        if (id == R.id.action_about) {
+            gotoAboutForTop();
             return true;
         }
 
@@ -117,11 +126,15 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_book_manage) {
             gotoBookManage();
         } else if (id == R.id.nav_settings) {
-
+            toolbar.setTitle(R.string.action_settings);
+            gotoSettingsForNav();
         } else if (id == R.id.nav_about) {
-
+            toolbar.setTitle(R.string.action_about);
+            gotoAboutForNav();
         } else if (id == R.id.nav_statistics) {
 
+        } else if (id == R.id.nav_publish_notice) {
+            gotoPushNotice();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -129,12 +142,24 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void gotoPushNotice() {
+        toolbar.setTitle(R.string.publish_notice);
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        Fragment mFragment = mFragmentManager.findFragmentByTag(PushMessageFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new PushMessageFragment();
+        }
+        FragmentUtil.addContentNoAnimation(R.id.main_container, mFragment, mFragmentManager, PushMessageFragment.TAG);
+    }
+
     private void gotoBookManage() {
         toolbar.setTitle(R.string.book_manage);
         if (mFragmentManager == null) {
             mFragmentManager = getSupportFragmentManager();
         }
-        mFragment = mFragmentManager.findFragmentByTag(BookManageFragment.TAG);
+        Fragment mFragment = mFragmentManager.findFragmentByTag(BookManageFragment.TAG);
         if (mFragment == null) {
             mFragment = new BookManageFragment();
         }
@@ -146,7 +171,7 @@ public class MainActivity extends AppCompatActivity
         if (mFragmentManager == null) {
             mFragmentManager = getSupportFragmentManager();
         }
-        mFragment = mFragmentManager.findFragmentByTag(UserManageFragment.TAG);
+        Fragment mFragment = mFragmentManager.findFragmentByTag(UserManageFragment.TAG);
         if (mFragment == null) {
             mFragment = new UserManageFragment();
         }
@@ -158,7 +183,7 @@ public class MainActivity extends AppCompatActivity
         if (mFragmentManager == null) {
             mFragmentManager = getSupportFragmentManager();
         }
-        mFragment = mFragmentManager.findFragmentByTag(PendingAuditFragment.TAG);
+        Fragment mFragment = mFragmentManager.findFragmentByTag(PendingAuditFragment.TAG);
         if (mFragment == null) {
             mFragment = new PendingAuditFragment(toolBarHandler);
         }
@@ -188,4 +213,84 @@ public class MainActivity extends AppCompatActivity
             }
         }
     };
+
+    private void gotoSettingsForNav() {
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        Fragment mFragment = mFragmentManager.findFragmentByTag(SeetingsFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new SeetingsFragment();
+        }
+        FragmentUtil.addContentNoAnimation(R.id.main_container, mFragment, mFragmentManager, SeetingsFragment.TAG);
+    }
+
+
+    private void gotoAboutForNav() {
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        Fragment mFragment = mFragmentManager.findFragmentByTag(AboutFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new AboutFragment();
+        }
+        FragmentUtil.addContentNoAnimation(R.id.main_container, mFragment, mFragmentManager, AboutFragment.TAG);
+    }
+
+    private void gotoAboutForTop() {
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        Fragment mFragment = mFragmentManager.findFragmentByTag(AboutFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new AboutFragment();
+        }
+
+        List<Fragment> fragments = mFragmentManager.getFragments();
+        Fragment from = new Fragment();
+        for (int i = fragments.size() - 1; i >= 0; i--) {
+            if (null != fragments.get(i) && fragments.get(i).isResumed()) {
+                from = fragments.get(i);
+                break;
+            }
+        }
+        if (from == mFragment) {
+            return;
+        }
+        if (fragments.size() <= 1) {
+            return;
+        }
+
+        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, AboutFragment.TAG);
+    }
+
+    private void gotoSettingsForTop() {
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        Fragment mFragment = mFragmentManager.findFragmentByTag(SeetingsFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new SeetingsFragment();
+        }
+
+        List<Fragment> fragments = mFragmentManager.getFragments();
+        Fragment from = new Fragment();
+        for (int i = fragments.size() - 1; i >= 0; i--) {
+            if (null != fragments.get(i) && fragments.get(i).isResumed()) {
+                from = fragments.get(i);
+                break;
+            }
+        }
+        if (from == mFragment) {
+            return;
+        }
+
+        if (fragments.size() <= 1) {
+            return;
+        }
+
+        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, SeetingsFragment.TAG);
+    }
+
+
 }
