@@ -1,0 +1,236 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.weiqianghu.usedbook_admin.view.fragment.BookDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_book_img"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/img_height"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/box_bg"></android.support.v4.view.ViewPager>
+
+            <TextView
+                android:id="@+id/tv_position"
+                style="@style/position_text_style"
+                android:layout_width="@dimen/middle_dp"
+                android:layout_height="@dimen/middle_dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/position_tv_bg"
+                android:gravity="center"
+                android:text="1/3" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/book_name" />
+
+            <TextView
+                android:id="@+id/tv_book_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="第一行代码 Android" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/isbn" />
+
+            <TextView
+                android:id="@+id/tv_book_isbn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="978-7121-26939-4" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/author" />
+
+            <TextView
+                android:id="@+id/tv_book_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="李玉刚" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/press" />
+
+            <TextView
+                android:id="@+id/tv_book_press"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="人民邮电出版社" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/sales_volume" />
+
+            <TextView
+                android:id="@+id/tv_book_sales_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/price" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/tv_book_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="78"
+                android:textColor="@color/red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/category" />
+
+            <TextView
+                android:id="@+id/tv_book_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="计算机/Android/移动开发" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/percent_describe" />
+
+            <TextView
+                android:id="@+id/tv_book_percent_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全新" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/stock" />
+
+            <TextView
+                android:id="@+id/tv_book_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_bg"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/comment" />
+
+            <ImageView
+                android:layout_width="@dimen/xsmall_dp"
+                android:layout_height="@dimen/xsmall_dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/enter" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

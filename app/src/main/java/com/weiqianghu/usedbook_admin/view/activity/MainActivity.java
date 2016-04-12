@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity
 
     private void initView(Bundle savedInstanceState) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.pending_audit);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        gotoPendingAudit();
+        gotoBookManage();
     }
 
     private void initToolBar() {

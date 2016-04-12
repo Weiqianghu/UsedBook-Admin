@@ -70,4 +70,5 @@ public class Constant {
 
     public static final int TRUE = 1;
     public static final int FALSE = 0;
+    public static final String SYS_MESSAGE_TYPE_NOTICE = "sys_message_type_notice";
 }

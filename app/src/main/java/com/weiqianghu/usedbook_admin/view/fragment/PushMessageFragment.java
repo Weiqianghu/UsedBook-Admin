@@ -6,21 +6,17 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.usedbook_admin.weiqianghu.usedbook_admin.R;
-import com.weiqianghu.usedbook_admin.model.eneity.PushMessageBean;
+import com.weiqianghu.usedbook_admin.model.eneity.SysMessageBean;
 import com.weiqianghu.usedbook_admin.presenter.SavePresenter;
 import com.weiqianghu.usedbook_admin.util.CallBackHandler;
 import com.weiqianghu.usedbook_admin.util.Constant;
 import com.weiqianghu.usedbook_admin.view.common.BaseFragment;
-
-import java.util.List;
 
 import cn.bmob.v3.BmobPushManager;
 
@@ -74,8 +70,11 @@ public class PushMessageFragment extends BaseFragment {
         BmobPushManager bmobPush = new BmobPushManager(mContext);
         bmobPush.pushMessageAll(messageContent);
 
-        PushMessageBean messageBean = new PushMessageBean();
+        SysMessageBean messageBean = new SysMessageBean();
         messageBean.setContent(messageContent);
+        messageBean.setMessageType(Constant.SYS_MESSAGE_TYPE_NOTICE);
+        messageBean.setTitle("系统通知");
+        messageBean.setImgUrl("");
 
         mSavePresenter.save(mContext, messageBean);
     }

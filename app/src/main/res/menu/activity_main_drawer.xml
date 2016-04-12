@@ -3,6 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_book_manage"
+            android:icon="@mipmap/book_manage"
+            android:title="@string/book_manage" />
+        <item
             android:id="@+id/nav_pending_audit"
             android:icon="@mipmap/peding_audit"
             android:title="@string/pending_audit" />
@@ -10,10 +14,6 @@
             android:id="@+id/nav_user_manage"
             android:icon="@mipmap/user_manage"
             android:title="@string/user_manage" />
-        <item
-            android:id="@+id/nav_book_manage"
-            android:icon="@mipmap/book_manage"
-            android:title="@string/book_manage" />
         <item
             android:id="@+id/nav_statistics"
             android:icon="@mipmap/statistics"

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/box_bg"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_book"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/xlarge_dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        fresco:placeholderImage="@mipmap/upload_img" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/xlarge_dp"
+        android:layout_margin="10dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_book_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一行代码 Android" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/tv_book_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="79.00"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/tv_percent_describe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="八成新" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stock" />
+
+            <TextView
+                android:id="@+id/tv_book_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/sales_volume" />
+
+            <TextView
+                android:id="@+id/tv_sales_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

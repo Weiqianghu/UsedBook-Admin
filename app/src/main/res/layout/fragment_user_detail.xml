@@ -1,0 +1,198 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.weiqianghu.usedbook_admin.view.fragment.UserDetailFragment">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_user_img"
+        android:layout_width="@dimen/xlarge_dp"
+        android:layout_height="@dimen/xlarge_dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        fresco:placeholderImage="@mipmap/default_user_img"
+        fresco:roundAsCircle="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_dp"
+        android:background="@drawable/box_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="@dimen/xlarge_dp"
+            android:layout_height="@dimen/small_dp"
+            android:gravity="center_vertical"
+            android:text="@string/mobileno" />
+
+        <TextView
+            android:id="@+id/tv_mobile_no"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            tools:text="13122392221" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/update_username"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_dp"
+        android:background="@drawable/box_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_username_title"
+            android:layout_width="@dimen/xlarge_dp"
+            android:layout_height="@dimen/small_dp"
+            android:gravity="center_vertical"
+            android:text="@string/username" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_username_title"
+            android:gravity="center_vertical"
+            tools:text="胡伟强" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/update_sex"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_dp"
+        android:background="@drawable/box_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_sex_title"
+            android:layout_width="@dimen/xlarge_dp"
+            android:layout_height="@dimen/small_dp"
+            android:gravity="center_vertical"
+            android:text="@string/sex" />
+
+        <TextView
+            android:id="@+id/tv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_sex_title"
+            android:gravity="center_vertical"
+            tools:text="男" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/update_age"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_dp"
+        android:background="@drawable/box_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_age_title"
+            android:layout_width="@dimen/xlarge_dp"
+            android:layout_height="@dimen/small_dp"
+            android:gravity="center_vertical"
+            android:text="@string/age" />
+
+        <TextView
+            android:id="@+id/tv_age"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_age_title"
+            android:gravity="center_vertical"
+            tools:text="20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_dp"
+        android:background="@drawable/box_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="@dimen/xlarge_dp"
+            android:layout_height="@dimen/small_dp"
+            android:gravity="center_vertical"
+            android:text="@string/role" />
+
+        <TextView
+            android:id="@+id/tv_role"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            tools:text="普通用户" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_dp"
+        android:background="@drawable/box_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="@dimen/xlarge_dp"
+            android:layout_height="@dimen/small_dp"
+            android:gravity="center_vertical"
+            android:text="@string/register_time" />
+
+        <TextView
+            android:id="@+id/tv_register_time"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            tools:text="2016-04-10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_dp"
+        android:background="@drawable/box_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="@dimen/xlarge_dp"
+            android:layout_height="@dimen/small_dp"
+            android:gravity="center_vertical"
+            android:text="@string/update_time" />
+
+        <TextView
+            android:id="@+id/tv_update_time"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            tools:text="2016-04-10" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_goto_shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background"
+        android:text="@string/goto_shop"
+        android:textColor="@color/white"
+        android:visibility="invisible" />
+
+</LinearLayout>
