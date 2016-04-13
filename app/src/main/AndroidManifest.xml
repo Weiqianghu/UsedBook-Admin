@@ -21,6 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:windowSoftInputMode="stateUnspecified|adjustResize"
             android:name="com.weiqianghu.usedbook_admin.view.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

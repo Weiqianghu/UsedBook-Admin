@@ -52,4 +52,28 @@ public class QueryUserPresenter extends CommonPresenter {
 
         mQueryModel.query(context, query, findListener);
     }
+
+
+    public void queryUser(Context context) {
+        FindListener<UserBean> findListener = new FindListener<UserBean>() {
+            @Override
+            public void onSuccess(List<UserBean> list) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList(Constant.LIST, (ArrayList<? extends Parcelable>) list);
+                handleSuccess(bundle);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                handleFailureMessage(i, s);
+            }
+        };
+
+        BmobQuery<UserBean> query = new BmobQuery<>();
+        query.addWhereNotEqualTo("role", Constant.ROLE_ADMIN);
+        query.include("shop");
+        query.order("-createdAt");
+
+        mQueryModel.query(context, query, findListener);
+    }
 }

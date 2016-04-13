@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.usedbook_admin.weiqianghu.usedbook_admin.R;
@@ -26,6 +28,7 @@ import com.weiqianghu.usedbook_admin.view.fragment.BookManageFragment;
 import com.weiqianghu.usedbook_admin.view.fragment.PendingAuditFragment;
 import com.weiqianghu.usedbook_admin.view.fragment.PushMessageFragment;
 import com.weiqianghu.usedbook_admin.view.fragment.SeetingsFragment;
+import com.weiqianghu.usedbook_admin.view.fragment.StasticsFragment;
 import com.weiqianghu.usedbook_admin.view.fragment.UserManageFragment;
 
 import java.util.List;
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "邮件联系我：weiqianghu_ecus@163.com", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle(R.string.action_about);
             gotoAboutForNav();
         } else if (id == R.id.nav_statistics) {
-
+            gotoStastics();
         } else if (id == R.id.nav_publish_notice) {
             gotoPushNotice();
         }
@@ -139,6 +142,18 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void gotoStastics() {
+        toolbar.setTitle(R.string.stastics);
+        if (mFragmentManager == null) {
+            mFragmentManager = getSupportFragmentManager();
+        }
+        Fragment mFragment = mFragmentManager.findFragmentByTag(StasticsFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new StasticsFragment();
+        }
+        FragmentUtil.addContentNoAnimation(R.id.main_container, mFragment, mFragmentManager, StasticsFragment.TAG);
     }
 
     private void gotoPushNotice() {
@@ -291,5 +306,35 @@ public class MainActivity extends AppCompatActivity
         FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, SeetingsFragment.TAG);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private int count = 0;
+    public void exit() {
+        if (count < 1) {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+        }
+        if (count < 2) {
+            count++;
+            new Thread() {
+                public void run() {
+                    try {
+                        sleep(3000);
+                        count = 0;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+        } else {
+            finish();
+        }
+    }
 }
