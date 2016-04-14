@@ -52,4 +52,25 @@ public class QueryShopPresenter extends CommonPresenter{
 
         mQueryModel.query(context,query,findListener);
     }
+
+
+    public void queryShop(Context context){
+        FindListener<ShopBean> findListener = new FindListener<ShopBean>() {
+            @Override
+            public void onSuccess(List list) {
+                Bundle bundle=new Bundle();
+                bundle.putParcelableArrayList(Constant.LIST, (ArrayList<? extends Parcelable>) list);
+                handleSuccess(bundle);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                handleFailureMessage(i, s);
+            }
+        };
+
+        BmobQuery<ShopBean> query = new BmobQuery<>();
+
+        mQueryModel.query(context,query,findListener);
+    }
 }

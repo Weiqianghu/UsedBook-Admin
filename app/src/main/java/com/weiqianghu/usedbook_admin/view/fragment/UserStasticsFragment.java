@@ -236,9 +236,6 @@ public class UserStasticsFragment extends BaseFragment {
                             BarDataSet set = new BarDataSet(mUserAgeCount, mContext.getResources().getString(R.string.user_age_statistics));
                             set.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-
-                            ArrayList<Integer> colors = new ArrayList<Integer>();
-
                             set.setColors(new int[]{R.color.mainColor, R.color.cool_blank, R.color.lightGray, R.color.link}, mContext);
                             set.setValueTextColor(mContext.getResources().getColor(R.color.white));
 

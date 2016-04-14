@@ -70,4 +70,6 @@
     <string name="user_role_statistics">用户卖家比例</string>
     <string name="user_age_statistics">用户年龄统计</string>
     <string name="user_sex_statistics">用户性别</string>
+    <string name="shop_register_time_statistics">商铺注册时间统计</string>
+    <string name="shop_province_statistics">商铺所在省份统计</string>
 </resources>

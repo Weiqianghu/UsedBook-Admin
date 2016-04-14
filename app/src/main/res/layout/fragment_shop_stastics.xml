@@ -6,10 +6,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/chart_user_register_time"
+            android:id="@+id/chart_shop_verify_state"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginBottom="20dp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_shop_register_time"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginBottom="20dp" />
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/chart_shop_province"
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:layout_marginBottom="20dp" />
