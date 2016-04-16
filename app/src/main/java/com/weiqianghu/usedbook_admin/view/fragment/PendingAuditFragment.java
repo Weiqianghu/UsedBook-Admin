@@ -230,9 +230,9 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView, IR
         if (mFragmentManager == null) {
             mFragmentManager = getActivity().getSupportFragmentManager();
         }
-        mFragment = mFragmentManager.findFragmentByTag(ShopFragment.TAG);
+        mFragment = mFragmentManager.findFragmentByTag(AuditShopFragment.TAG);
         if (mFragment == null) {
-            mFragment = new ShopFragment();
+            mFragment = new AuditShopFragment();
         }
 
         Bundle bundle = new Bundle();
@@ -240,7 +240,7 @@ public class PendingAuditFragment extends BaseFragment implements IQueryView, IR
 
         mFragment.setArguments(bundle);
         Fragment from = mFragmentManager.findFragmentByTag(PendingAuditFragment.TAG);
-        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, ShopFragment.TAG);
+        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, AuditShopFragment.TAG);
 
         Message message = new Message();
         message.what = Constant.SET_VIEW;

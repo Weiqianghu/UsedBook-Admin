@@ -99,7 +99,7 @@ public class OrderStasticsFragment extends BaseFragment {
         mOrderStateChart.setDescription("订单状态统计");
 
         mOrderAddressChart = (HorizontalBarChart) mRootView.findViewById(R.id.chart_order_address);
-        mOrderAddressChart.setDescription("订单收货地址查询");
+        mOrderAddressChart.setDescription("订单收货地址统计");
 
         mOrderPriceChart = (PieChart) mRootView.findViewById(R.id.chart_order_price);
         mOrderPriceChart.setDescription("订单总价统计");
@@ -263,7 +263,7 @@ public class OrderStasticsFragment extends BaseFragment {
                                 mOrderAddress.add(entry.getKey());
                             }
 
-                            BarDataSet set = new BarDataSet(mOrderAddressCount, mContext.getResources().getString(R.string.shop_province_statistics));
+                            BarDataSet set = new BarDataSet(mOrderAddressCount, mContext.getResources().getString(R.string.address_province_statistics));
                             set.setAxisDependency(YAxis.AxisDependency.LEFT);
 
                             set.setColors(new int[]{R.color.mainColor, R.color.cool_blank, R.color.lightGray, R.color.link}, mContext);

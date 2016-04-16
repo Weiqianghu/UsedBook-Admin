@@ -26,7 +26,6 @@ repositories {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile files('libs/BmobSDK_V3.4.5_1111.jar')
     compile project(path: ':emoji')
     compile files('libs/Bmob_Push_V0.8beta_20160315.jar')
     compile 'com.android.support:appcompat-v7:23.3.0'
@@ -38,4 +37,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.facebook.fresco:fresco:0.9.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+    compile files('libs/BmobSDK_V3.4.6_0413.jar')
 }
