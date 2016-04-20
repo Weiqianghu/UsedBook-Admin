@@ -13,11 +13,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -213,7 +209,13 @@ public class BookManageFragment extends BaseFragment implements IRecycleViewItem
         Bundle bundle = new Bundle();
         bundle.putParcelable(Constant.BOOK, mData.get(position));
 
-        mFragment.setArguments(bundle);
+        Bundle tempBundle=mFragment.getArguments();
+        if(tempBundle==null){
+            mFragment.setArguments(bundle);
+        }else {
+            tempBundle.putParcelable(Constant.BOOK, mData.get(position));
+        }
+
         Fragment from = mFragmentManager.findFragmentByTag(BookManageFragment.TAG);
         FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, BookDetailFragment.TAG);
     }
